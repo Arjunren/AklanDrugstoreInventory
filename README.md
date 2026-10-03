@@ -27,7 +27,7 @@ This fixed login is intended only for a classroom demonstration. A production ap
 
 ## Open and run in Visual Studio
 
-1. Open `AklanDrugstoreInventory.slnx`.
+1. Open `AklanDrugstoreInventory.sln` in Visual Studio. This traditional solution format is the safest option.
 2. Select `Windows Machine` or an Android emulator in the debug target list.
 3. Press `F5`.
 4. Log in with the demo account.
@@ -46,13 +46,14 @@ dotnet build AklanDrugstoreInventory.csproj -f net10.0-android
 - `Models/InventoryItem.cs` - inventory data model and chart value
 - `Models/AuditEntry.cs` - audit record model
 - `Resources/` - app icons, splash screen, fonts, and styles
-- `output/pdf/` - classroom submission document
+- `output/docx/` - editable Word classroom submission document
 
 ## Notes
 
 - Product and audit data are saved in `FileSystem.AppDataDirectory`.
 - Four sample products are created the first time the app starts.
 - The code intentionally uses clear code-behind so it is easy to discuss in a student presentation.
+- Unlock the application with username `admin` and password `admin123`.
 
 ## Credits
 
