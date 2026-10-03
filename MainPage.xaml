@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:AklanDrugstoreInventory.Models"
+             x:Class="AklanDrugstoreInventory.MainPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#F3F6F4">
+
+    <ContentPage.Resources>
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="Stroke" Value="#DDE6E1" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 14" />
+            <Setter Property="Padding" Value="18" />
+        </Style>
+        <Style x:Key="MenuButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+            <Setter Property="HorizontalTextAlignment" Value="Start" />
+            <Setter Property="CornerRadius" Value="8" />
+        </Style>
+        <Style x:Key="Title" TargetType="Label">
+            <Setter Property="FontFamily" Value="OpenSansSemibold" />
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="TextColor" Value="#15392B" />
+        </Style>
+        <Style x:Key="Field" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="#F8FAF9" />
+            <Setter Property="TextColor" Value="#19352A" />
+            <Setter Property="PlaceholderColor" Value="#7B8D85" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <!-- Local login screen -->
+        <Grid x:Name="LoginPanel" Padding="24">
+            <Border Style="{StaticResource Card}"
+                    MaximumWidthRequest="430"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                <VerticalStackLayout Spacing="14">
+                    <Border BackgroundColor="#167A53"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 12"
+                            HeightRequest="76"
+                            WidthRequest="76"
+                            HorizontalOptions="Center">
+                        <Label Text="Rx" TextColor="White" FontSize="30"
+                               FontFamily="OpenSansSemibold"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                    <Label Text="Aklan Drugstore" FontSize="27"
+                           FontFamily="OpenSansSemibold" TextColor="#15392B"
+                           HorizontalOptions="Center" />
+                    <Label Text="Inventory Management System" TextColor="#5E7169"
+                           HorizontalOptions="Center" />
+                    <Entry x:Name="UsernameEntry" Style="{StaticResource Field}"
+                           Placeholder="Username" Text="admin" />
+                    <Entry x:Name="PasswordEntry" Style="{StaticResource Field}"
+                           Placeholder="Password" IsPassword="True" />
+                    <Label x:Name="LoginMessage" TextColor="#B42318" IsVisible="False" />
+                    <Button Text="LOG IN" BackgroundColor="#167A53" Clicked="OnLoginClicked" />
+                    <Label Text="Demo account: admin / admin123" FontSize="12"
+                           TextColor="#718078" HorizontalOptions="Center" />
+                    <Label Text="Developed by Arjunren Valdez" FontSize="11"
+                           TextColor="#8A9791" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+        <!-- Main application -->
+        <Grid x:Name="AppPanel" IsVisible="False" ColumnDefinitions="210,*">
+            <Border Grid.Column="0" BackgroundColor="#123D2E" StrokeThickness="0" Padding="16,22">
+                <Grid RowDefinitions="Auto,*,Auto">
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="AKLAN" TextColor="#A7E0C6" FontSize="13" />
+                        <Label Text="Drugstore Inventory" TextColor="White" FontSize="19"
+                               FontFamily="OpenSansSemibold" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Row="1" Margin="0,30,0,0" Spacing="8">
+                        <Button Text="Dashboard" Style="{StaticResource MenuButton}"
+                                Clicked="OnDashboardMenuClicked" />
+                        <Button Text="Inventory" Style="{StaticResource MenuButton}"
+                                Clicked="OnInventoryMenuClicked" />
+                        <Button Text="Audit Trail" Style="{StaticResource MenuButton}"
+                                Clicked="OnAuditMenuClicked" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Row="2" Spacing="5">
+                        <Label Text="Arjunren Valdez" TextColor="#CDE6DA" FontSize="12" />
+                        <Button Text="Log out" Style="{StaticResource MenuButton}"
+                                Clicked="OnLogoutClicked" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="1" Padding="24">
+                <!-- Dashboard and data visualization -->
+                <ScrollView x:Name="DashboardPanel">
+                    <VerticalStackLayout Spacing="18">
+                        <Label Text="Dashboard" Style="{StaticResource Title}" />
+                        <Label Text="Quick view of the drugstore inventory." TextColor="#66756F" />
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="14">
+                            <Border Style="{StaticResource Card}">
+                                <VerticalStackLayout>
+                                    <Label Text="Products" TextColor="#65746E" />
+                                    <Label x:Name="ProductCountLabel" Text="0" FontSize="30"
+                                           TextColor="#167A53" FontFamily="OpenSansSemibold" />
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Column="1" Style="{StaticResource Card}">
+                                <VerticalStackLayout>
+                                    <Label Text="Total units" TextColor="#65746E" />
+                                    <Label x:Name="UnitCountLabel" Text="0" FontSize="30"
+                                           TextColor="#167A53" FontFamily="OpenSansSemibold" />
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Column="2" Style="{StaticResource Card}">
+                                <VerticalStackLayout>
+                                    <Label Text="Low stock" TextColor="#65746E" />
+                                    <Label x:Name="LowStockCountLabel" Text="0" FontSize="30"
+                                           TextColor="#C65911" FontFamily="OpenSansSemibold" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </Grid>
+
+                        <Border Style="{StaticResource Card}">
+                            <VerticalStackLayout Spacing="14">
+                                <Label Text="Stock level chart" FontSize="18"
+                                       FontFamily="OpenSansSemibold" TextColor="#234438" />
+                                <CollectionView x:Name="ChartView" ItemsSource="{Binding Items}"
+                                                HeightRequest="220" ItemsLayout="HorizontalList">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="models:InventoryItem">
+                                            <Grid WidthRequest="92" RowDefinitions="*,Auto,Auto" Padding="8,0">
+                                                <BoxView Grid.Row="0" WidthRequest="38"
+                                                         HeightRequest="{Binding ChartHeight}"
+                                                         VerticalOptions="End" HorizontalOptions="Center"
+                                                         Color="#3BA575" CornerRadius="5" />
+                                                <Label Grid.Row="1" Text="{Binding Quantity}" FontSize="12"
+                                                       HorizontalOptions="Center" TextColor="#38564B" />
+                                                <Label Grid.Row="2" Text="{Binding Name}" FontSize="11"
+                                                       HorizontalTextAlignment="Center" LineBreakMode="TailTruncation"
+                                                       WidthRequest="86" TextColor="#52675F" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                </ScrollView>
+
+                <!-- Inventory CRUD screen -->
+                <Grid x:Name="InventoryPanel" IsVisible="False" RowDefinitions="Auto,*" RowSpacing="14">
+                    <VerticalStackLayout>
+                        <Label Text="Inventory Management" Style="{StaticResource Title}" />
+                        <Label Text="Select a row to update or delete a product." TextColor="#66756F" />
+                    </VerticalStackLayout>
+                    <Grid Grid.Row="1" ColumnDefinitions="320,*" ColumnSpacing="16">
+                        <Border Style="{StaticResource Card}">
+                            <ScrollView>
+                                <VerticalStackLayout Spacing="10">
+                                    <Label Text="Product details" FontSize="18" FontFamily="OpenSansSemibold"
+                                           TextColor="#234438" />
+                                    <Entry x:Name="NameEntry" Style="{StaticResource Field}" Placeholder="Product name" />
+                                    <Entry x:Name="CategoryEntry" Style="{StaticResource Field}" Placeholder="Category" />
+                                    <Entry x:Name="QuantityEntry" Style="{StaticResource Field}" Placeholder="Quantity"
+                                           Keyboard="Numeric" />
+                                    <Entry x:Name="PriceEntry" Style="{StaticResource Field}" Placeholder="Price"
+                                           Keyboard="Numeric" />
+                                    <DatePicker x:Name="ExpiryPicker" MinimumDate="2024-01-01" />
+                                    <Label x:Name="FormMessage" FontSize="12" TextColor="#B42318" IsVisible="False" />
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                                        <Button Text="Add" BackgroundColor="#167A53" Clicked="OnAddClicked" />
+                                        <Button Grid.Column="1" Text="Update" BackgroundColor="#2F6F9F" Clicked="OnUpdateClicked" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                                        <Button Text="Delete" BackgroundColor="#B33A3A" Clicked="OnDeleteClicked" />
+                                        <Button Grid.Column="1" Text="Clear" BackgroundColor="#687873" Clicked="OnClearClicked" />
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </ScrollView>
+                        </Border>
+
+                        <Border Grid.Column="1" Style="{StaticResource Card}">
+                            <CollectionView x:Name="InventoryView" ItemsSource="{Binding Items}"
+                                            SelectionMode="Single" SelectionChanged="OnInventorySelectionChanged">
+                                <CollectionView.Header>
+                                    <Grid ColumnDefinitions="2*,1.2*,.7*,.8*,1.1*" Padding="8,6" BackgroundColor="#E8F2ED">
+                                        <Label Text="Product" FontFamily="OpenSansSemibold" />
+                                        <Label Grid.Column="1" Text="Category" FontFamily="OpenSansSemibold" />
+                                        <Label Grid.Column="2" Text="Qty" FontFamily="OpenSansSemibold" />
+                                        <Label Grid.Column="3" Text="Price" FontFamily="OpenSansSemibold" />
+                                        <Label Grid.Column="4" Text="Expiry" FontFamily="OpenSansSemibold" />
+                                    </Grid>
+                                </CollectionView.Header>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:InventoryItem">
+                                        <Grid ColumnDefinitions="2*,1.2*,.7*,.8*,1.1*" Padding="8,10">
+                                            <Label Text="{Binding Name}" LineBreakMode="TailTruncation" />
+                                            <Label Grid.Column="1" Text="{Binding Category}" LineBreakMode="TailTruncation" />
+                                            <Label Grid.Column="2" Text="{Binding Quantity}" />
+                                            <Label Grid.Column="3" Text="{Binding Price, StringFormat='{0:F2}'}" />
+                                            <Label Grid.Column="4" Text="{Binding ExpiryDate, StringFormat='{0:MMM dd, yyyy}'}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                                <CollectionView.EmptyView>
+                                    <Label Text="No inventory records yet." HorizontalOptions="Center"
+                                           VerticalOptions="Center" TextColor="#718078" />
+                                </CollectionView.EmptyView>
+                            </CollectionView>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <!-- Audit trail -->
+                <Grid x:Name="AuditPanel" IsVisible="False" RowDefinitions="Auto,*" RowSpacing="14">
+                    <VerticalStackLayout>
+                        <Label Text="Audit Trail" Style="{StaticResource Title}" />
+                        <Label Text="Records of login and inventory transactions." TextColor="#66756F" />
+                    </VerticalStackLayout>
+                    <Border Grid.Row="1" Style="{StaticResource Card}">
+                        <CollectionView ItemsSource="{Binding AuditEntries}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:AuditEntry">
+                                    <Grid ColumnDefinitions="160,120,*" Padding="8,11">
+                                        <Label Text="{Binding Time, StringFormat='{0:MMM dd, yyyy HH:mm}'}" FontSize="12" />
+                                        <Label Grid.Column="1" Text="{Binding Action}" FontFamily="OpenSansSemibold"
+                                               TextColor="#167A53" />
+                                        <Label Grid.Column="2" Text="{Binding Details}" LineBreakMode="WordWrap" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

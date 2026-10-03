@@ -1,0 +1,4 @@
+AKLAN DRUGSTORE INVENTORY
+
+Simple .NET MAUI student project for Windows and Android.
+Developed by Arjunren Valdez, 2026.

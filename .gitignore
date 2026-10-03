@@ -1,0 +1,30 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider and VS Code
+.idea/
+.vscode/
+
+# MAUI signing and packages
+*.keystore
+*.jks
+*.pfx
+*.apk
+*.aab
+*.msix
+*.msixbundle
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# PDF generation scratch files
+tmp/
