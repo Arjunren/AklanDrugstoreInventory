@@ -284,8 +284,9 @@ document.add_paragraph(
 )
 document.add_paragraph(
     "The project is ready to open using the traditional Visual Studio solution file named "
-    "AklanDrugstoreInventory.sln. Product and audit data are stored locally as JSON files, so "
-    "the classroom demonstration does not require a database server or internet connection."
+    "AklanDrugstoreInventory.sln. Product and audit data are stored in in-memory list collections, "
+    "so the classroom demonstration does not require SQL, a database server, or internet access. "
+    "The list resets when the application closes."
 )
 
 document.add_heading("System Login", level=2)
@@ -306,7 +307,8 @@ feature_rows = [
     ("Inventory management", "Add, update, delete, select, and display products", "Complete"),
     ("Data visualization", "Product count, total units, low stock, and bar chart", "Complete"),
     ("Audit trail", "Login, logout, add, update, and delete records", "Complete"),
-    ("Local storage", "Inventory and audit JSON files in application data", "Complete"),
+    ("List storage", "In-memory inventory and audit collections for the open session", "Complete"),
+    ("Category suggestions", "Filters previously used categories while the user types", "Complete"),
 ]
 add_table(document, ["Requirement", "Implementation", "Status"], feature_rows, [Inches(1.55), Inches(3.85), Inches(1.0)])
 
@@ -349,7 +351,7 @@ structure_rows = [
     ("AklanDrugstoreInventory.sln", "Traditional Visual Studio solution file"),
     ("AklanDrugstoreInventory.csproj", ".NET MAUI project settings and target platforms"),
     ("MainPage.xaml", "Login, dashboard, inventory, and audit user interface"),
-    ("MainPage.xaml.cs", "Login, navigation, CRUD, validation, persistence, and audit logic"),
+    ("MainPage.xaml.cs", "Login, navigation, CRUD, category suggestions, list data, and audit logic"),
     ("Models", "InventoryItem and AuditEntry data classes"),
     ("Resources", "App icons, splash screen, fonts, styles, and raw assets"),
 ]

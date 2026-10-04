@@ -60,7 +60,8 @@
                     <Entry x:Name="PasswordEntry" Style="{StaticResource Field}"
                            Placeholder="Password" IsPassword="True" />
                     <Label x:Name="LoginMessage" TextColor="#B42318" IsVisible="False" />
-                    <Button Text="LOG IN" BackgroundColor="#167A53" Clicked="OnLoginClicked" />
+                    <Button Text="LOG IN" BackgroundColor="#167A53" TextColor="White"
+                            Clicked="OnLoginClicked" />
                     <Label Text="Demo account: admin / admin123" FontSize="12"
                            TextColor="#718078" HorizontalOptions="Center" />
                     <Label Text="Developed by Arjunren Valdez" FontSize="11"
@@ -164,20 +165,45 @@
                                     <Label Text="Product details" FontSize="18" FontFamily="OpenSansSemibold"
                                            TextColor="#234438" />
                                     <Entry x:Name="NameEntry" Style="{StaticResource Field}" Placeholder="Product name" />
-                                    <Entry x:Name="CategoryEntry" Style="{StaticResource Field}" Placeholder="Category" />
+                                    <Entry x:Name="CategoryEntry" Style="{StaticResource Field}" Placeholder="Category"
+                                           TextChanged="OnCategoryTextChanged" />
+                                    <CollectionView x:Name="CategorySuggestionList"
+                                                    ItemsSource="{Binding CategorySuggestions}"
+                                                    IsVisible="False"
+                                                    HeightRequest="92"
+                                                    SelectionMode="None"
+                                                    BackgroundColor="#F0F7F3">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Text="{Binding .}"
+                                                        CommandParameter="{Binding .}"
+                                                        Clicked="OnCategorySuggestionClicked"
+                                                        BackgroundColor="#E8F2ED"
+                                                        TextColor="#19352A"
+                                                        FontSize="13"
+                                                        HeightRequest="38"
+                                                        Padding="10,4" />
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
                                     <Entry x:Name="QuantityEntry" Style="{StaticResource Field}" Placeholder="Quantity"
                                            Keyboard="Numeric" />
                                     <Entry x:Name="PriceEntry" Style="{StaticResource Field}" Placeholder="Price"
                                            Keyboard="Numeric" />
-                                    <DatePicker x:Name="ExpiryPicker" MinimumDate="2024-01-01" />
+                                    <DatePicker x:Name="ExpiryPicker" MinimumDate="2024-01-01"
+                                                TextColor="#19352A" />
                                     <Label x:Name="FormMessage" FontSize="12" TextColor="#B42318" IsVisible="False" />
                                     <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
-                                        <Button Text="Add" BackgroundColor="#167A53" Clicked="OnAddClicked" />
-                                        <Button Grid.Column="1" Text="Update" BackgroundColor="#2F6F9F" Clicked="OnUpdateClicked" />
+                                        <Button Text="Add" BackgroundColor="#167A53" TextColor="White"
+                                                Clicked="OnAddClicked" />
+                                        <Button Grid.Column="1" Text="Update" BackgroundColor="#2F6F9F"
+                                                TextColor="White" Clicked="OnUpdateClicked" />
                                     </Grid>
                                     <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
-                                        <Button Text="Delete" BackgroundColor="#B33A3A" Clicked="OnDeleteClicked" />
-                                        <Button Grid.Column="1" Text="Clear" BackgroundColor="#687873" Clicked="OnClearClicked" />
+                                        <Button Text="Delete" BackgroundColor="#B33A3A" TextColor="White"
+                                                Clicked="OnDeleteClicked" />
+                                        <Button Grid.Column="1" Text="Clear" BackgroundColor="#687873"
+                                                TextColor="White" Clicked="OnClearClicked" />
                                     </Grid>
                                 </VerticalStackLayout>
                             </ScrollView>
@@ -188,21 +214,22 @@
                                             SelectionMode="Single" SelectionChanged="OnInventorySelectionChanged">
                                 <CollectionView.Header>
                                     <Grid ColumnDefinitions="2*,1.2*,.7*,.8*,1.1*" Padding="8,6" BackgroundColor="#E8F2ED">
-                                        <Label Text="Product" FontFamily="OpenSansSemibold" />
-                                        <Label Grid.Column="1" Text="Category" FontFamily="OpenSansSemibold" />
-                                        <Label Grid.Column="2" Text="Qty" FontFamily="OpenSansSemibold" />
-                                        <Label Grid.Column="3" Text="Price" FontFamily="OpenSansSemibold" />
-                                        <Label Grid.Column="4" Text="Expiry" FontFamily="OpenSansSemibold" />
+                                        <Label Text="Product" FontFamily="OpenSansSemibold" TextColor="#234438" />
+                                        <Label Grid.Column="1" Text="Category" FontFamily="OpenSansSemibold" TextColor="#234438" />
+                                        <Label Grid.Column="2" Text="Qty" FontFamily="OpenSansSemibold" TextColor="#234438" />
+                                        <Label Grid.Column="3" Text="Price" FontFamily="OpenSansSemibold" TextColor="#234438" />
+                                        <Label Grid.Column="4" Text="Expiry" FontFamily="OpenSansSemibold" TextColor="#234438" />
                                     </Grid>
                                 </CollectionView.Header>
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate x:DataType="models:InventoryItem">
-                                        <Grid ColumnDefinitions="2*,1.2*,.7*,.8*,1.1*" Padding="8,10">
-                                            <Label Text="{Binding Name}" LineBreakMode="TailTruncation" />
-                                            <Label Grid.Column="1" Text="{Binding Category}" LineBreakMode="TailTruncation" />
-                                            <Label Grid.Column="2" Text="{Binding Quantity}" />
-                                            <Label Grid.Column="3" Text="{Binding Price, StringFormat='{0:F2}'}" />
-                                            <Label Grid.Column="4" Text="{Binding ExpiryDate, StringFormat='{0:MMM dd, yyyy}'}" />
+                                        <Grid ColumnDefinitions="2*,1.2*,.7*,.8*,1.1*" Padding="8,10"
+                                              HorizontalOptions="Fill">
+                                            <Label Text="{Binding Name}" LineBreakMode="TailTruncation" TextColor="#2E443B" />
+                                            <Label Grid.Column="1" Text="{Binding Category}" LineBreakMode="TailTruncation" TextColor="#2E443B" />
+                                            <Label Grid.Column="2" Text="{Binding Quantity}" TextColor="#2E443B" />
+                                            <Label Grid.Column="3" Text="{Binding Price, StringFormat='{0:F2}'}" TextColor="#2E443B" />
+                                            <Label Grid.Column="4" Text="{Binding ExpiryDate, StringFormat='{0:MMM dd, yyyy}'}" TextColor="#2E443B" />
                                         </Grid>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
@@ -223,13 +250,22 @@
                     </VerticalStackLayout>
                     <Border Grid.Row="1" Style="{StaticResource Card}">
                         <CollectionView ItemsSource="{Binding AuditEntries}">
+                            <CollectionView.Header>
+                                <Grid ColumnDefinitions="160,120,*" Padding="8,7" BackgroundColor="#E8F2ED">
+                                    <Label Text="Date and time" FontFamily="OpenSansSemibold" TextColor="#234438" />
+                                    <Label Grid.Column="1" Text="Action" FontFamily="OpenSansSemibold" TextColor="#234438" />
+                                    <Label Grid.Column="2" Text="Details" FontFamily="OpenSansSemibold" TextColor="#234438" />
+                                </Grid>
+                            </CollectionView.Header>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="models:AuditEntry">
-                                    <Grid ColumnDefinitions="160,120,*" Padding="8,11">
-                                        <Label Text="{Binding Time, StringFormat='{0:MMM dd, yyyy HH:mm}'}" FontSize="12" />
+                                    <Grid ColumnDefinitions="160,120,*" Padding="8,11" HorizontalOptions="Fill">
+                                        <Label Text="{Binding Time, StringFormat='{0:MMM dd, yyyy HH:mm}'}"
+                                               FontSize="12" TextColor="#2E443B" />
                                         <Label Grid.Column="1" Text="{Binding Action}" FontFamily="OpenSansSemibold"
                                                TextColor="#167A53" />
-                                        <Label Grid.Column="2" Text="{Binding Details}" LineBreakMode="WordWrap" />
+                                        <Label Grid.Column="2" Text="{Binding Details}" LineBreakMode="WordWrap"
+                                               TextColor="#2E443B" />
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>

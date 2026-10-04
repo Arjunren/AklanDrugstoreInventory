@@ -10,7 +10,8 @@ A simple student project made with .NET MAUI for a local drugstore in Aklan, Pan
 - Dashboard totals and a stock-level bar chart
 - Low-stock count for products with 10 units or fewer
 - Audit trail for login and inventory transactions
-- Local JSON storage using the device application-data folder
+- In-memory list storage for a simple classroom demonstration
+- Category suggestions based on categories already used in the list
 
 ## Demo login
 
@@ -50,8 +51,8 @@ dotnet build AklanDrugstoreInventory.csproj -f net10.0-android
 
 ## Notes
 
-- Product and audit data are saved in `FileSystem.AppDataDirectory`.
-- Four sample products are created the first time the app starts.
+- Product and audit data remain available while the application is open and reset when it closes.
+- Four sample products are created each time the app starts.
 - The code intentionally uses clear code-behind so it is easy to discuss in a student presentation.
 - Unlock the application with username `admin` and password `admin123`.
 
