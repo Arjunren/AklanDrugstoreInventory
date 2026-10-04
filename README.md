@@ -22,6 +22,12 @@ A simple student project made with .NET MAUI for a local drugstore in Aklan, Pan
 
 This fixed login is intended only for a classroom demonstration. A production application should store password hashes securely and use proper authentication.
 
+## Video demonstration
+
+Paste your uploaded video link inside the parentheses below:
+
+[Watch the Aklan Drugstore Inventory demo](PASTE_YOUR_VIDEO_URL_HERE)
+
 ## Requirements
 
 - Visual Studio 2026 with the .NET MAUI workload
