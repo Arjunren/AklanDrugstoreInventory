@@ -50,15 +50,15 @@
         <Grid x:Name="AppPanel" IsVisible="False" ColumnDefinitions="210,*">
             <Border Grid.Column="0" BackgroundColor="#12355B" StrokeThickness="0" Padding="16,22">
                 <Grid RowDefinitions="Auto,*,Auto">
-                    <HorizontalStackLayout Spacing="10">
+                    <VerticalStackLayout Spacing="10">
                         <Image Source="drugstore_logo.jpg" HeightRequest="48" WidthRequest="48"
                                Aspect="AspectFit" SemanticProperties.Description="Aklan Drugstore logo" />
                         <VerticalStackLayout Spacing="2" VerticalOptions="Center">
-                            <Label Text="AKLAN" TextColor="#9DD5FF" FontSize="12" />
                             <Label Text="Drugstore Inventory" TextColor="White" FontSize="16"
                                    FontFamily="OpenSansSemibold" />
+                            <Label Text="AKLAN" HorizontalTextAlignment="Center" TextColor="#9DD5FF" FontSize="12" />
                         </VerticalStackLayout>
-                    </HorizontalStackLayout>
+                    </VerticalStackLayout>
                     <VerticalStackLayout Grid.Row="1" Margin="0,30,0,0" Spacing="8">
                         <Button Text="Dashboard" BackgroundColor="Transparent" TextColor="White"
                                 HorizontalOptions="Fill" CornerRadius="8"
@@ -71,7 +71,8 @@
                                 Clicked="OnAuditMenuClicked" />
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Row="2" Spacing="5">
-                        <Label Text="Arjunren Valdez" TextColor="#D8ECFF" FontSize="12" />
+                        <Label HorizontalTextAlignment="Center" Text="Arjunren Valdez" TextColor="#D8ECFF" FontSize="12" />
+                        <BoxView HeightRequest="1" Color="#50FFFFFF" HorizontalOptions="Fill" Margin="20,5" />
                         <Button Text="Log out" BackgroundColor="Transparent" TextColor="White"
                                 HorizontalOptions="Fill" CornerRadius="8"
                                 Clicked="OnLogoutClicked" />

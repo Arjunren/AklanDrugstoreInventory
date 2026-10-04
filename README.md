@@ -26,7 +26,7 @@ This fixed login is intended only for a classroom demonstration. A production ap
 
 Paste your uploaded video link inside the parentheses below:
 
-[Watch the Aklan Drugstore Inventory demo](PASTE_YOUR_VIDEO_URL_HERE)
+[Watch the Aklan Drugstore Inventory demo](https://drive.google.com/file/d/16yGJgrzWUXerB-FEpu7k638hpEtAdvG7/view?usp=sharing)
 
 ## Requirements
 
@@ -55,7 +55,6 @@ dotnet build AklanDrugstoreInventory.csproj -f net10.0-android
 - `Models/InventoryItem.cs` - inventory data model and chart value
 - `Models/AuditEntry.cs` - audit record model
 - `Resources/` - app icons, splash screen, fonts, colors, and images
-- `output/docx/` - editable Word classroom submission document
 
 ## Notes
 
