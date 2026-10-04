@@ -10,7 +10,7 @@ from docx.shared import Inches, Pt, RGBColor
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "output" / "docx" / "Arjunren_Valdez_IntermediateMobileProg_04TaskPerformance1.docx"
+OUTPUT = ROOT / "output" / "docx" / "02000400300_VALDEZ_BSCS501_IntermediateMobileProg_04TaskPerformance1.docx"
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 
 BLACK = "000000"
@@ -286,7 +286,8 @@ document.add_paragraph(
     "The project is ready to open using the traditional Visual Studio solution file named "
     "AklanDrugstoreInventory.sln. Product and audit data are stored in in-memory list collections, "
     "so the classroom demonstration does not require SQL, a database server, or internet access. "
-    "The list resets when the application closes."
+    "The list resets when the application closes. The blue cloud interface uses direct properties "
+    "on each XAML control so the layout remains suitable for an introductory student lesson."
 )
 
 document.add_heading("System Login", level=2)
@@ -309,6 +310,7 @@ feature_rows = [
     ("Audit trail", "Login, logout, add, update, and delete records", "Complete"),
     ("List storage", "In-memory inventory and audit collections for the open session", "Complete"),
     ("Category suggestions", "Filters previously used categories while the user types", "Complete"),
+    ("Manual XAML design", "Blue cloud colors and control properties without style tags", "Complete"),
 ]
 add_table(document, ["Requirement", "Implementation", "Status"], feature_rows, [Inches(1.55), Inches(3.85), Inches(1.0)])
 
@@ -353,7 +355,7 @@ structure_rows = [
     ("MainPage.xaml", "Login, dashboard, inventory, and audit user interface"),
     ("MainPage.xaml.cs", "Login, navigation, CRUD, category suggestions, list data, and audit logic"),
     ("Models", "InventoryItem and AuditEntry data classes"),
-    ("Resources", "App icons, splash screen, fonts, styles, and raw assets"),
+    ("Resources", "App icons, splash screen, logo image, fonts, colors, and raw assets"),
 ]
 add_table(document, ["File or Folder", "Purpose"], structure_rows, [Inches(2.55), Inches(3.85)])
 
@@ -361,7 +363,7 @@ document.add_page_break()
 document.add_heading("Core Source Code", level=1)
 document.add_paragraph(
     "The following pages contain the core XAML and C# source used by the project. Standard "
-    "platform manifests, generated build files, fonts, icons, and style resources remain in the "
+    "platform manifests, generated build files, fonts, icons, and image resources remain in the "
     "project repository."
 )
 
@@ -383,6 +385,10 @@ for index, (relative_path, source_title) in enumerate(source_files):
 document.add_page_break()
 document.add_heading("Credits and License", level=1)
 document.add_paragraph("Designed and developed by Arjunren Valdez.")
+document.add_paragraph(
+    "The interface logo uses iStock illustration 1077130198 supplied for this student project. "
+    "An appropriate image license is required before public or commercial distribution."
+)
 document.add_paragraph(
     "The project is released under the MIT License. The repository contains the application "
     "source code, README, license, project assets, solution files, and this editable Word document."

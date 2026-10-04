@@ -12,6 +12,8 @@ A simple student project made with .NET MAUI for a local drugstore in Aklan, Pan
 - Audit trail for login and inventory transactions
 - In-memory list storage for a simple classroom demonstration
 - Category suggestions based on categories already used in the list
+- Blue cloud theme written with direct XAML properties instead of reusable style tags
+- Medical logo displayed on the login screen and navigation panel
 
 ## Demo login
 
@@ -43,10 +45,10 @@ dotnet build AklanDrugstoreInventory.csproj -f net10.0-android
 ## Project structure
 
 - `MainPage.xaml` - login, dashboard, inventory form/table, and audit interface
-- `MainPage.xaml.cs` - navigation, validation, CRUD, persistence, and audit logic
+- `MainPage.xaml.cs` - navigation, validation, CRUD, in-memory lists, and audit logic
 - `Models/InventoryItem.cs` - inventory data model and chart value
 - `Models/AuditEntry.cs` - audit record model
-- `Resources/` - app icons, splash screen, fonts, and styles
+- `Resources/` - app icons, splash screen, fonts, colors, and images
 - `output/docx/` - editable Word classroom submission document
 
 ## Notes
@@ -55,6 +57,7 @@ dotnet build AklanDrugstoreInventory.csproj -f net10.0-android
 - Four sample products are created each time the app starts.
 - The code intentionally uses clear code-behind so it is easy to discuss in a student presentation.
 - Unlock the application with username `admin` and password `admin123`.
+- The logo image is based on [iStock illustration 1077130198](https://www.istockphoto.com/vector/cross-or-plus-with-letter-o-logo-icon-design-gm1077130198-288502989); confirm the appropriate image license before public or commercial distribution.
 
 ## Credits
 
